@@ -11,7 +11,7 @@ a simple MADE example
 
 
 import numpy as np
-import utils
+from . import utils
 
 import torch
 import torch.optim as optim
@@ -19,8 +19,8 @@ from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
-import nn as nn_
-import iaf_modules
+from . import nn as nn_
+from . import iaf_modules
 import matplotlib.pyplot as plt
 
 
@@ -60,10 +60,10 @@ class model(object):
                 self.optim.step()
                 
                 if ((it + 1) % 10) == 0:
-                    print 'Epoch: [%2d] [%4d/%4d] loss: %.8f' % \
+                    print('Epoch: [%2d] [%4d/%4d] loss: %.8f' % \
                         (epoch+1, it+1, 
                          self.data_loader.dataset.__len__() // 32,
-                         loss.data[0])
+                         loss.data[0]))
                  
                 self.mdl.randomize()
 

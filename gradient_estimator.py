@@ -41,12 +41,12 @@ def reinforce(reward, log_prob, retain_graph=False, iib=None, idb=None):
 if __name__ == '__main__':
     
     from torchvision import datasets, transforms
-    import transforms as transforms_
-    import helpers
-    import autoencoders as aes 
+    from . import transforms as transforms_
+    from . import helpers
+    from . import autoencoders as aes 
     from torch import optim, nn
     from itertools import chain 
-    import utils
+    from . import utils
     import numpy as np
     
     nmc = 3
@@ -114,7 +114,7 @@ if __name__ == '__main__':
             optim2.step()
             count += 1
             if count % print_every == 0:
-                print('[{}] {}'.format(e, loss))
+                print(('[{}] {}'.format(e, loss)))
         
     
     

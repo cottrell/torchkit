@@ -7,12 +7,12 @@ Created on Sun Sep 16 18:50:15 2018
 """
 
 
-import nn as nn_
+from . import nn as nn_
 import torch.nn as nn
 from torch.nn import Parameter
 from torch.autograd import Variable
 import torch
-from utils import bceloss
+from .utils import bceloss
 
 tanh = nn.Tanh()
 

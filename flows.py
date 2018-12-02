@@ -11,11 +11,11 @@ import torch.nn as nn
 from torch.nn import Module
 from torch.nn.parameter import Parameter
 from torch.nn import functional as F
-import nn as nn_
-from nn import log 
+from . import nn as nn_
+from .nn import log 
 from torch.autograd import Variable
-import iaf_modules 
-import utils
+from . import iaf_modules 
+from . import utils
 import numpy as np
 
 
@@ -480,7 +480,7 @@ class Sigmoid(BaseFlow):
         elif len(inputs) == 3:
             input, logdet, context = inputs
         else:
-            raise(Exception('inputs length not correct'))
+            raise Exception
         
         output = F.sigmoid(input)
         logdet += sum_from_one(- F.softplus(input) - F.softplus(-input))
@@ -491,7 +491,7 @@ class Sigmoid(BaseFlow):
         elif len(inputs) == 3:
             return output, logdet, context
         else:
-            raise(Exception('inputs length not correct'))
+            raise Exception
 
 
 class Logit(BaseFlow):
@@ -505,7 +505,7 @@ class Logit(BaseFlow):
         elif len(inputs) == 3:
             input, logdet, context = inputs
         else:
-            raise(Exception('inputs length not correct'))
+            raise Exception
 
         output = log(input) - log(1-input)
         logdet -= sum_from_one(log(input) + log(-input+1))        
@@ -515,7 +515,7 @@ class Logit(BaseFlow):
         elif len(inputs) == 3:
             return output, logdet, context
         else:
-            raise(Exception('inputs length not correct'))
+            raise Exception
 
 
 
@@ -531,7 +531,7 @@ class Shift(BaseFlow):
         elif len(inputs) == 3:
             input, logdet, context = inputs
         else:
-            raise(Exception('inputs length not correct'))
+            raise Exception
         
         output = input + self.b
         
@@ -540,7 +540,7 @@ class Shift(BaseFlow):
         elif len(inputs) == 3:
             return output, logdet, context
         else:
-            raise(Exception('inputs length not correct'))
+            raise Exception
         
         
 
@@ -556,7 +556,7 @@ class Scale(BaseFlow):
         elif len(inputs) == 3:
             input, logdet, context = inputs
         else:
-            raise(Exception('inputs length not correct'))
+            raise Exception
         
         output = input * self.g
         logdet += np.log(np.abs(self.g)) * np.prod(input.size()[1:])
@@ -567,7 +567,7 @@ class Scale(BaseFlow):
         elif len(inputs) == 3:
             return output, logdet, context
         else:
-            raise(Exception('inputs length not correct'))
+            raise Exception
         
         
     
@@ -589,11 +589,11 @@ if __name__ == '__main__':
     mdl = IAF(784, 1000, 200, 3)
     
     inputs = (inp, lgd, con)
-    print(mdl(inputs)[0].size())
+    print((mdl(inputs)[0].size()))
     
     
     mdl = IAF_DSF(784, 1000, 200, 3)
-    print(mdl(inputs)[0].size())
+    print((mdl(inputs)[0].size()))
     
     
     n = 2
@@ -603,6 +603,6 @@ if __name__ == '__main__':
     dsf = DenseSigmoidFlow(num_in_dim,num_ds_dim,num_ds_dim)
     
     mdl = IAF_DSF(784, 1000, 200, 3, num_ds_layers=2)
-    print(mdl(inputs)[0].size())
+    print((mdl(inputs)[0].size()))
     
     

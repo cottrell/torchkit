@@ -9,8 +9,8 @@ Created on Tue Apr 24 17:45:45 2018
 import numpy as np
 import torch
 import torch.nn as nn
-import nn as nn_
-import flows
+from . import nn as nn_
+from . import flows
 from torch.nn import functional as F
 from torch.nn.parameter import Parameter
 
@@ -180,7 +180,7 @@ class Parameters(nn.Module):
         dim = np.prod(size)
         spler = self.merged_sampler.register_sampler(
             flows.LinearFlow(dim, dimc, oper=nn.Linear))
-        print 'registering stochastic parameter of size {}'.format(size)
+        print('registering stochastic parameter of size {}'.format(size))
         return lambda: spler().contiguous().view(-1,*size) 
     
     def add_params_1(self, param):

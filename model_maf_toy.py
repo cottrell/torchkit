@@ -14,9 +14,9 @@ import numpy as np
 import torch
 import torch.optim as optim
 from torch.autograd import Variable
-import nn as nn_
-import flows
-import utils
+from . import nn as nn_
+from . import flows
+from . import utils
 import matplotlib.pyplot as plt
 
 
@@ -79,8 +79,8 @@ class model(object):
             self.optim.step()
             
             if ((it + 1) % 100) == 0:
-                print 'Iteration: [%4d/%4d] loss: %.8f' % \
-                    (it+1, total, loss.data[0])
+                print('Iteration: [%4d/%4d] loss: %.8f' % \
+                    (it+1, total, loss.data[0]))
             
             #self.mdl.made.randomize()
 
@@ -171,7 +171,7 @@ plt.ylim((-10,10))
 
 
 
-from ops import mollify
+from .ops import mollify
 
 
 fig = plt.figure(figsize=(10,15))

@@ -14,11 +14,11 @@ import numpy as np
 import torch
 import torch.optim as optim
 from torch.autograd import Variable
-import nn as nn_
-import flows
+from . import nn as nn_
+from . import flows
 import matplotlib.pyplot as plt
 
-from toy_energy import U2 as ef
+from .toy_energy import U2 as ef
 
 
 
@@ -55,8 +55,8 @@ class model(object):
             self.optim.step()
             
             if ((it + 1) % 1000) == 0:
-                print 'Iteration: [%4d/%4d] loss: %.8f' % \
-                    (it+1, total, loss.data[0])
+                print('Iteration: [%4d/%4d] loss: %.8f' % \
+                    (it+1, total, loss.data[0]))
              
 
 
