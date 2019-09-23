@@ -9,6 +9,7 @@ Created on Sun Nov  4 14:07:44 2018
 
 import os
 
+
 def getpaths(save_folder='default'):
     droot = os.environ['DATASETS']
     sroot = os.environ['SAVEPATH']
@@ -16,9 +17,8 @@ def getpaths(save_folder='default'):
     create(spath)
     return droot, sroot, spath
 
+
 def create(*args):
     path = '/'.join(a for a in args)
     if not os.path.isdir(path):
         os.makedirs(path)
-
-
